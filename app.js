@@ -12,6 +12,8 @@ var errorHandler = require('errorhandler');
 var lusca = require('lusca');
 var methodOverride = require('method-override');
 
+var exphbs  = require('express-handlebars');
+
 var _ = require('lodash');
 var MongoStore = require('connect-mongo')(session);
 var flash = require('express-flash');
@@ -27,6 +29,8 @@ var sass = require('node-sass-middleware');
  */
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
+var clientController = require('./controllers/client');
+var expertController = require('./controllers/expert');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 
@@ -53,9 +57,13 @@ mongoose.connection.on('error', function() {
 /**
  * Express configuration.
  */
+
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+
+app.engine('.html', exphbs({defaultLayout: 'main', extname: '.html'}));
+app.set('view engine', '.html');
+
 app.use(compress());
 app.use(sass({
   src: path.join(__dirname, 'public'),
@@ -99,6 +107,13 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  * Primary app routes.
  */
 app.get('/', homeController.index);
+app.get('/why', homeController.why);
+app.get('/how', homeController.how);
+app.get('/faq', homeController.faq);
+
+app.get('/client/signup', clientController.signup);
+app.get('/expert/signup', expertController.signup);
+
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);

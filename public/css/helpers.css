@@ -1,0 +1,26 @@
+.font-s32 {
+    font-size: 32px;
+}
+
+.font-s64 {
+    font-size: 64px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.font-cprimary {
+    color: #1cbac8 !important;
+}
+
+.featured-sign {
+    background-color: #1cbac8;
+    font-size: 32px;
+    color: #FFFFFF;
+    display: inline-block;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+}
