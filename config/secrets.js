@@ -23,11 +23,23 @@ module.exports = {
 
   db: process.env.MONGODB || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/test',
 
-  sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
+  sessionSecret: process.env.SESSION_SECRET || 'D1240DEF4D41D416FD291D0075B6ED3F',
+
+  smtp: {
+
+    host: 'nlss1.a2hosting.com',
+    port: 465,
+    secure: true,
+    auth: {
+      user: 'noreply@qusion.net',
+      pass: 'M@ry@!@#$5'
+    }
+
+  },
 
   mailgun: {
-    user: process.env.MAILGUN_USER || 'postmaster@sandbox697fcddc09814c6b83718b9fd5d4e5dc.mailgun.org',
-    password: process.env.MAILGUN_PASSWORD || '29eldds1uri6'
+    user: process.env.MAILGUN_USER || 'postmaster@sandboxf192684638834ba79daca8ea74eca28e.mailgun.org',
+    password: process.env.MAILGUN_PASSWORD || '49047faec425f06a52642e87affb037c'
   },
   
   mandrill: {

@@ -15,10 +15,10 @@ var methodOverride = require('method-override');
 var exphbs  = require('express-handlebars');
 
 var _ = require('lodash');
-var MongoStore = require('connect-mongo')(session);
+//var MongoStore = require('connect-mongo')(session);
 var flash = require('express-flash');
 var path = require('path');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
 var passport = require('passport');
 var expressValidator = require('express-validator');
 var sass = require('node-sass-middleware');
@@ -48,17 +48,17 @@ var app = express();
 /**
  * Connect to MongoDB.
  */
-mongoose.connect(secrets.db);
+/*mongoose.connect(secrets.db);
 mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
   process.exit(1);
-});
+});*/
 
 /**
  * Express configuration.
  */
 
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || /*694330*/3000);
 app.set('views', path.join(__dirname, 'views'));
 
 app.engine('.html', exphbs({defaultLayout: 'main', extname: '.html'}));
@@ -78,20 +78,27 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 app.use(methodOverride());
 app.use(cookieParser());
+/*
 app.use(session({
-  resave: true,
-  saveUninitialized: true,
+  resave: false,
+  saveUninitialized: false,
   secret: secrets.sessionSecret,
-  store: new MongoStore({ url: secrets.db, autoReconnect: true })
+ // store: new MongoStore({ url: secrets.db, autoReconnect: true })
 }));
-app.use(passport.initialize());
-app.use(passport.session());
+*/
+app.use(session({
+  secret: 'keyboard cat'
+}));
 app.use(flash());
-app.use(lusca({
+/*app.use(lusca({
   csrf: true,
   xframe: 'SAMEORIGIN',
   xssProtection: true
-}));
+}));*/
+app.use(lusca.xframe('SAMEORIGIN'));
+app.use(lusca.p3p('ABCDEF'));
+app.use(lusca.hsts({ maxAge: 31536000 }));
+app.use(lusca.xssProtection(true));
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
@@ -111,8 +118,10 @@ app.get('/why', homeController.why);
 app.get('/how', homeController.how);
 app.get('/faq', homeController.faq);
 
-app.get('/client/signup', clientController.signup);
-app.get('/expert/signup', expertController.signup);
+app.get('/client/signup', clientController.getSignup);
+app.post('/client/signup', clientController.postSignup);
+app.get('/expert/signup', expertController.getSignup);
+app.post('/expert/signup', expertController.postSignup);
 
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);

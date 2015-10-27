@@ -25,27 +25,63 @@
                 <h1>Sign Up as an Expert</h1>
                 <blockquote class="quote">We are exciting to have you in our network.</blockquote>
             </div>
-            <form id="contact-form">
+            {{> flash }}
+            <form id="contact-form" method="post" action="/expert/signup">
                 <div class="row">
-                    <div class="col-md-4">
-                        <input name="expertise" id="expertise" type="text" placeholder="What is your expertise">
+                    <div class="col-md-4 col-sm-12">
+                        <input name="expertise" id="expertise" type="text" placeholder="What is your expertise" required>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <input name="email" id="email" type="text" placeholder="Email (required)">
+                    <div class="col-md-4 col-sm-12">
+                        <input name="email" id="email" type="text" placeholder="Email (required)" required>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
-                        <input name="your_name" id="your_name" type="text" placeholder="Your Name">
+                    <div class="col-md-4 col-sm-12">
+                        <input name="your_name" id="your_name" type="text" placeholder="Your Name (required)" required>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-sm-12">
                         <input name="skype" id="skype" type="text" placeholder="Skype ID">
                     </div>
                 </div>
+
+
+                <h5>Write your top 5 skills</h5>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <input name="skill1" id="skill1" type="text" placeholder="Skill 1" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <input name="skill2" id="skill2" type="text" placeholder="Skill 2">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <input name="skill3" id="skill3" type="text" placeholder="Skill 3">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <input name="skill4" id="skill4" type="text" placeholder="Skill 4">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <input name="skill5" id="skill5" type="text" placeholder="Skill 5">
+                    </div>
+                </div>
+
+                <h5>Anything else you want to share with us?</h5>
                 <textarea name="comment" id="comment" placeholder="Additional Information"></textarea>
 
                 <div class="submit-area">

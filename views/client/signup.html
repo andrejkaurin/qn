@@ -25,15 +25,16 @@
                 <h1>Hire an Expert</h1>
                 <blockquote class="quote">We know we are unique but would like you to tell us that.</blockquote>
             </div>
-            <form id="contact-form">
+            {{> flash }}
+            <form id="contact-form" method="post" action="/client/signup">
                 <div class="row">
                     <div class="col-md-4">
-                        <input name="name" id="name" type="text" placeholder="What kind of expert do you need">
+                        <input name="expert" id="expert" type="text" placeholder="What kind of expert do you need (required)" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <input name="email" id="email" type="text" placeholder="Email (required)">
+                        <input name="email" id="email" type="text" placeholder="Email (required)" required>
                     </div>
                 </div>
                 <div class="row">
@@ -43,7 +44,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <input name="your_name" id="your_name" type="text" placeholder="Your Name">
+                        <input name="your_name" id="your_name" type="text" placeholder="Your Name (Required)" required>
                     </div>
                 </div>
                 <div class="row">

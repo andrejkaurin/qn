@@ -1,12 +1,7 @@
 var secrets = require('../config/secrets');
 var nodemailer = require("nodemailer");
-var transporter = nodemailer.createTransport({
-  service: 'SendGrid',
-  auth: {
-    user: secrets.sendgrid.user,
-    pass: secrets.sendgrid.password
-  }
-});
+var smtpTransport = require('nodemailer-smtp-transport');
+var transporter = nodemailer.createTransport(smtpTransport(secrets.smtp));
 
 /**
  * GET /contact
@@ -34,11 +29,11 @@ exports.postContact = function(req, res) {
     return res.redirect('/contact');
   }
 
-  var from = req.body.email;
+  var from = 'noreply@qusion.net';//req.body.email;
   var name = req.body.name;
-  var body = req.body.message;
-  var to = 'your@email.com';
-  var subject = 'Contact Form | Hackathon Starter';
+  var body = req.body.email + '\n\n' + req.body.message;
+  var to = 'andrej.kaurin@gmail.com';
+  var subject = 'Contact Form | Qusion.NET';
 
   var mailOptions = {
     to: to,

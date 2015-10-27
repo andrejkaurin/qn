@@ -33,17 +33,23 @@
                     <div class="row">
                         <div class="col-md-4">
                             <span><i class="fa fa-skype"></i></span>
+
                             <h2>Skype Us</h2>
+
                             <p>qusion.net</p>
                         </div>
                         <div class="col-md-4">
                             <span><i class="fa fa-phone"></i></span>
+
                             <h2>Call Us</h2>
+
                             <p> Phone: +387 65 111 1111 11</p>
                         </div>
                         <div class="col-md-4">
                             <span><i class="fa fa-envelope"></i></span>
+
                             <h2>Email Us</h2>
+
                             <p> info@qusion.net</p>
                         </div>
                     </div>
@@ -53,22 +59,26 @@
 
         <div class="contact-form">
             <div class="container">
-                <form id="contact-form">
+                {{> flash }}
+                <form id="contact-form" method="post" action="/contact">
                     <h2>GET IN TOUCH</h2>
+
                     <div class="row">
                         <div class="col-md-4">
-                            <input name="name" id="name" type="text" placeholder="Name(Required)">
+                            <input name="name" id="name" type="text" placeholder="Name(Required)" required>
                         </div>
                         <div class="col-md-4">
-                            <input name="mail" id="mail" type="text" placeholder="Email(Required)">
+                            <input name="email" id="mail" type="text" placeholder="Email(Required)" required>
                         </div>
                         <div class="col-md-4">
                             <input name="website" id="website" type="text" placeholder="Website">
                         </div>
                     </div>
-                    <textarea name="comment" id="comment" placeholder="Your Message(Required)"></textarea>
+                    <textarea name="message" id="message" placeholder="Your Message(Required)"></textarea>
+
                     <div class="submit-area">
                         <input type="submit" id="submit_contact" value="Send Message">
+
                         <div id="msg" class="message"></div>
                     </div>
                 </form>
